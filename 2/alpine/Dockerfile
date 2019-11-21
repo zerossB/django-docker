@@ -11,9 +11,12 @@ RUN apk add --no-cache tzadata; \
 
 RUN pip install django:${DJANGO_VERSION}
 
+RUN mkdir /scripts
+COPY ./scripts /scripts
+
 RUN mkdir /code
 WORKDIR /code
 
 EXPOSE 8000
 
-ENTRYPOINT [ "/entrypoint.sh" ]
+ENTRYPOINT [ "/scripts/entrypoint.sh" ]
