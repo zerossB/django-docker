@@ -5,34 +5,6 @@ set -o pipefail
 ## Functions
 
 ########################
-# Wait for database to be ready
-# Globals:
-#   DATABASE_HOST
-# Arguments:
-#   None
-# Returns:
-#   None
-#########################
-wait_for_db() {
-    local db_host="${DATABASE_HOST:-mariadb}"
-    local db_address
-    db_address="$(getent hosts "$db_host" | awk '{ print $1 }')"
-    counter=0
-
-    echo "Connecting to MariaDB at $db_address"
-
-    while ! nc -z "$db_host" 3306; do
-        counter = $((counter + 1))
-        if [ $counter == 30 ]; then
-            echo "Error: Couldn't connect to MariaDB."
-            exit 1
-        fi
-        echo "Trying to connect to mariadb at $db_address. Attempt $counter."
-        sleep 5
-    done
-}
-
-########################
 # Verify and Create Project
 # Globals:
 #   PROJECT_NAME
@@ -59,10 +31,6 @@ verify_project() {
         pip install -r requirements.txt
         echo "Installed !!"
     fi
-
-    # if [[ -z $SKIP_DB_WAIT ]]; then
-    #     wait_for_db
-    # fi
 
     echo "Creating Migrations"
     python manage.py makemigrations
