@@ -1,8 +1,8 @@
-FROM python:3.7-alpine
+FROM python:3.8-alpine
 ENV PYTHONUNBUFFERED 1
 
 ENV ZONEINFO=America/Sao_Paulo \
-    DJANGO_VERSION=2.2.7
+    DJANGO_VERSION=2.2.8
 
 RUN apk update && apk add --no-cache postgresql-dev gcc python3-dev musl-dev bash tzdata;
 RUN cp /usr/share/zoneinfo/${ZONEINFO} /etc/localtime; \
