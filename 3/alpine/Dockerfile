@@ -7,9 +7,8 @@ ENV ZONEINFO=America/Sao_Paulo \
 RUN apk update && apk add --no-cache postgresql-dev gcc python3-dev musl-dev bash tzdata;\
     cp /usr/share/zoneinfo/${ZONEINFO} /etc/localtime; \
     echo "${ZONEINFO}" > /etc/timezone; \
-    pip install django==${DJANGO_VERSION}
-
-RUN mkdir /scripts; \
+    pip install django==${DJANGO_VERSION}; \
+    mkdir /scripts; \
     mkdir /code;
 
 COPY ./scripts /scripts
