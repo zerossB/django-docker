@@ -2,20 +2,18 @@ FROM python:3.8-alpine
 ENV PYTHONUNBUFFERED 1
 
 ENV ZONEINFO=America/Sao_Paulo \
-    DJANGO_VERSION=3.0
+    DJANGO_VERSION=2.2.8
 
-RUN apk update && apk add --no-cache postgresql-dev gcc python3-dev musl-dev bash tzdata;
-RUN cp /usr/share/zoneinfo/${ZONEINFO} /etc/localtime; \
-    echo "${ZONEINFO}" > /etc/timezone
+RUN apk update && apk add --no-cache postgresql-dev gcc python3-dev musl-dev bash tzdata;\
+    cp /usr/share/zoneinfo/${ZONEINFO} /etc/localtime; \
+    echo "${ZONEINFO}" > /etc/timezone; \
+    pip install django==${DJANGO_VERSION}
 
-RUN pip install django==${DJANGO_VERSION}
+RUN mkdir /scripts; \
+    mkdir /code;
 
-RUN mkdir /scripts
 COPY ./scripts /scripts
-
-RUN mkdir /code
 WORKDIR /code
-
 EXPOSE 8000
-
+RUN chmod +x /code/scripts/start.sh
 ENTRYPOINT [ "/scripts/entrypoint.sh" ]
