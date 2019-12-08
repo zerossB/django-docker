@@ -31,7 +31,7 @@ services:
     restart: always
     environment:
       ZONEINFO: "America/Sao_Paulo"
-      DJANGO_VERSION: 2.2.7
+      DJANGO_VERSION: 2.2.8
       PROJECT_NAME: myapp
     ports:
       - 8000:8000
@@ -49,7 +49,7 @@ This image uses environment variables for configuration.
 Available variables | Default value| Description
 --- | --- | ---
 ZONEINFO | America/Sao_Paulo | [Django Time Zone](https://docs.djangoproject.com/en/2.2/topics/i18n/timezones/)
-DJANGO_VERSION | 2.2.7 | Django Version
+DJANGO_VERSION | 2.2.8 | Django Version
 PROJECT_NAME | myapp | Project Name
 
 ## Functionalities
