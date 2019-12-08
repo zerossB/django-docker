@@ -2,6 +2,13 @@
 
 Image made to be able to create and run Django projects in a simple and 100% modifiable way.
 
+## Simple Tags
+
+- [`master`](https://github.com/zerossB/django-docker/blob/master/2/alpine/Dockerfile)
+- [`develop`](https://github.com/zerossB/django-docker/blob/develop/2/alpine/Dockerfile)
+- [`develop-3`](https://github.com/zerossB/django-docker/blob/develop/3/alpine/Dockerfile)
+
+
 ## How to use?
 
 Simply build the image using `docker build -t docker-django`.
