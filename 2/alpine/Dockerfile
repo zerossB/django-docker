@@ -14,5 +14,5 @@ RUN apk update && apk add --no-cache postgresql-dev gcc python3-dev musl-dev bas
 COPY ./scripts /scripts
 WORKDIR /code
 EXPOSE 8000
-RUN chmod +x /code/scripts/start.sh
+RUN chmod +x /scripts/entrypoint.sh
 ENTRYPOINT [ "/scripts/entrypoint.sh" ]
